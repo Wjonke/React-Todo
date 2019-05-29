@@ -1,13 +1,39 @@
+//All files compile into this and are exported to Index.html to be rendered
+
 import React from 'react';
+import TodoList from './components/TodoComponents/TodoList'
+import TodoForm from './components/TodoComponents/TodoForm'
 
 class App extends React.Component {
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
+  constructor() {
+    super();
+    this.state = {
+      todoList: [{ task: "", id: Date.now(), completed: false }],
+      task: ""
+    };
+  }
+
+  handleTaskAddInfo = event => {
+    this.setState({ task: event.target.value });
+  };
+
+  handleAddTodoItem = event => {
+    event.preventDefault();
+    const todoListCopy = this.state.todoList.slice();
+    todoListCopy.push({ task: this.state.task, id: Date.now(), completed: false });
+    this.setState({ todoList: todoListCopy, task: "" });
+  };
+
+
+
   render() {
     return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
+      
+      <div className="App">
+        <h1>My Todo List</h1>
+        <p>Tasks to Complete</p>
+        <TodoList todoList={this.state.todoList} />
+        <TodoForm handleAddTodo={this.handleAddTodoItem} handleTask={this.handleTaskAddInfo} />
       </div>
     );
   }
