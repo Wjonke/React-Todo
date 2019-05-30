@@ -8,8 +8,23 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      todoList: [{ task: "", id: Date.now(), completed: false }],
-      task: ""
+      todoList: [
+
+        {
+          task: 'Organize Garage',
+          id: 1528817077286,
+          completed: false
+        },
+
+        {
+          task: 'Bake Cookies',
+          id: 1528817084358,
+          completed: false
+        },
+        
+        { task: "", id: Date.now(), completed: false },
+      ],
+      //task: ""
     };
   }
 
